@@ -1,10 +1,8 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
+const threadController = require('../controllers/threads')
 
-
-router.get('/test', function(req, res, next) {
-	res.render('index', { title: 'Testing' })
-})
+router.post('/thread/new/', threadController.addNewThread)
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Homepage' })
 })

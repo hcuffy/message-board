@@ -4,14 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>
       <%= title %>
     </title>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div class="container">
+      <h3 class="title">Message Board</h3>
+      <div class="complete-form add-thread">
+        <h5>New Thread</h3>
+      <form class="new-thread" action="/thread/new/" method="post">
+        <div class="form-group">
+           <label for="thread_text">Enter Thread Text:</label>
+           <textarea class="form-control" name="thread_text" id="thread_text" rows="3">Thread Text...</textarea>
+        </div>
+        <div class="form-group">
+          <label for="password-form">Deletion Password:</label>
+          <input class="form-control" id="password-form" type="password" name="password" placeholder="Password*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Thread</button>
+      </form>
 
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/javascripts/main.js"></script>
   </body>
 
 </html>
