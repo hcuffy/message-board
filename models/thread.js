@@ -7,7 +7,7 @@ const ThreadSchema = new Schema(
 		password: String,
 		report: Boolean,
 		replies: [],
-		deleted:Boolean
+		deleted: Boolean
 	},
 	{ timestamps: true }
 )
