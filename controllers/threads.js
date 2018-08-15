@@ -1,4 +1,6 @@
 const Thread = require('../models/thread')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 exports.addNewThread = (req, res, next) => {
 
@@ -12,9 +14,11 @@ exports.addNewThread = (req, res, next) => {
 		password
 	} = req.body
 
+	const hashedPassword = bcrypt.hashSync(password, saltRounds)
+
 	const newThread = new Thread({
 		thread: thread_text,
-		password: password,
+		password: hashedPassword,
 		report: false,
 		deleted: false
 	})
