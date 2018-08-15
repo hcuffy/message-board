@@ -13,24 +13,22 @@
   <body>
     <div class="container">
       <h3 class="title">Message Board</h3>
-      <div class="complete-form add-thread">
+      <div class="all-threads">
         <h5>Threads</h3>
-      <form class="new-thread" action="/thread/new/" method="post">
-        <div class="form-group">
-           <label for="thread_text">Enter Thread Text:</label>
-           <textarea class="form-control" name="thread_text" id="thread_text" rows="3"placeholder="Thread Text..."></textarea>
-        </div>
-        <div class="form-group">
-          <label for="password-form">Deletion Password:</label>
-          <input class="form-control" id="password-form" type="password" name="password" placeholder="Password*" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Thread</button>
-      </form>
 
+       <% for(var i = 0; i < threads.length; i++){ %>
+        <div class="individual-thread">
+          <span><b>Created on:</b> <%=threads[i].createdAt.getFullYear() +"-"+ threads[i].createdAt.getMonth() +"-"+ threads[i].createdAt.getDate() %></span>
+          <span><%=threads[i].thread %></span>
+          <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
+            <form  id="<%=threads[i].id%>" >
+            <label for="password-form">Deletion Thread:</label>
+            <input  type="password" name="password" placeholder="Password*" required>
+            <button type="sumbit" class="btn btn-danger delete-thread">Delete Thread</button>
+          </form>
+        </div>
+     <%  } %>
       </div>
-      <div class="thread-list">
-      <a href="/threads"><button class="btn btn-secondary">Go To Thread List &rarr;</button></a>
-     </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

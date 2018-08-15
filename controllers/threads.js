@@ -27,8 +27,7 @@ exports.addNewThread = (req, res, next) => {
 			 return next(err)
 		 }
 	})
-	res.render('index', { title: 'Homepage' })
-
+	res.redirect('/threads')
 }
 
 exports.getThreads = (req, res, next) => {
