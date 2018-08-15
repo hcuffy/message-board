@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const ThreadSchema = new Schema(
+const ReplySchema = new Schema(
 	{
-		thread: String,
+		threadId: String,
+		reply: String,
 		password: String,
 		report: Boolean,
 		deleted: Boolean
@@ -11,5 +12,5 @@ const ThreadSchema = new Schema(
 	{ timestamps: true }
 )
 
-const ModelClass = mongoose.model('thread', ThreadSchema)
+const ModelClass = mongoose.model('reply', ReplySchema)
 module.exports = ModelClass

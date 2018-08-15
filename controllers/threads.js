@@ -16,7 +16,6 @@ exports.addNewThread = (req, res, next) => {
 		thread: thread_text,
 		password: password,
 		report: false,
-		replies: [],
 		deleted: false
 	})
 	newThread.save(err => {
