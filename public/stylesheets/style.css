@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #b5b5b5;
 }
 
 a {
@@ -9,4 +10,16 @@ a {
 
 .title {
   text-align: center;
+}
+
+.add-thread {
+  width: 50%;
+  float: left;
+}
+
+.thread-list {
+  width: 50%;
+  float: right;
+  text-align: center;
+  padding-top: 60px;
 }

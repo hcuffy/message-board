@@ -30,3 +30,15 @@ exports.addNewThread = (req, res, next) => {
 	res.render('index', { title: 'Homepage' })
 
 }
+
+exports.getThreads = (req, res, next) => {
+
+	Thread.find({}, (err , threads) => {
+		if (err){
+	  return next(err)
+		}
+		res.render('thread', { title: 'Thread List' , threads })
+
+	})
+
+}
