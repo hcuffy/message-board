@@ -18,10 +18,12 @@
 
        <% for(var i = 0; i < threads.length; i++){ %>
         <div class="individual-thread">
-          <span><b>Created on:</b> <%=threads[i].createdAt.getFullYear() +"-"+ threads[i].createdAt.getMonth() +"-"+ threads[i].createdAt.getDate() %></span>
-          <span><%=threads[i].thread %></span>
-          <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
-            <form  id="<%=threads[i].id%>" >
+          <span><b>Created on:</b> <%=threads[i].createdAt.getFullYear() +"-"+ threads[i].createdAt.getMonth() +"-"+ threads[i].createdAt.getDate() %></span><br>
+          <p>
+            <span><%=threads[i].thread %></span><br>
+            <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
+          </p>
+          <form  id="<%=threads[i].id%>" >
             <label for="password-form">Deletion Thread:</label>
             <input  type="password" name="password" placeholder="Password*" required>
             <button type="sumbit" class="btn btn-danger delete-thread">Delete Thread</button>

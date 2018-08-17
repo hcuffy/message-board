@@ -32,7 +32,7 @@ exports.addNewThread = (req, res, next) => {
 
 exports.getThreads = (req, res, next) => {
 
-	Thread.find({}, (err , threads) => {
+	Thread.find({},null,{ sort: { createdAt: -1 } }, (err , threads) => {
 		if (err){
 	  return next(err)
 		}
