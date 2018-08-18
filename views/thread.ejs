@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>
       <%= title %>
@@ -21,7 +22,12 @@
           <span><b>Created on:</b> <%=threads[i].createdAt.getFullYear() +"-"+ threads[i].createdAt.getMonth() +"-"+ threads[i].createdAt.getDate() %></span><br>
           <p>
             <span><%=threads[i].thread %></span><br>
-            <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
+
+            <% if(threads[i].report){ %>
+            <button id="<%=threads[i].id%>" class="btn btn-warning report" disabled>Already Reported</button>
+            <%}else{%>
+             <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
+              <%}%>
           </p>
           <form  id="<%=threads[i].id%>" >
             <label for="password-form">Deletion Thread:</label>
@@ -35,6 +41,8 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/javascripts/main.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
   </body>
 
 </html>

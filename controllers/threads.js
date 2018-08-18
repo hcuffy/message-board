@@ -41,3 +41,16 @@ exports.getThreads = (req, res, next) => {
 	})
 
 }
+
+exports.reportThread = (req, res, next) => {
+	console.log('I got here')
+
+	Thread.findByIdAndUpdate(req.params.id,{ $set :{ report : true } }, (err, thread) => {
+		if (err) {
+			return next(err)
+		}
+	   res.end('success')
+
+	})
+
+}
