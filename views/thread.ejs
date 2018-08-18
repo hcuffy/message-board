@@ -35,8 +35,8 @@
             <button type="sumbit" class="btn btn-danger delete-thread">Delete Thread</button>
           </form>
 
-          <div>
-              <form class="reply-form" action="/replies/add-reply/:<%=threads[i].id%>" method="post">
+          <div class="reply-box">
+              <form class="reply-form" action="/replies/add-reply/<%=threads[i].id%>" method="post">
                 <div class="form-group">
                   <textarea class="form-control" rows="3" name="reply" placeholder="New Reply" required></textarea>
                 </div>

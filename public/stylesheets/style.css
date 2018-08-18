@@ -34,3 +34,7 @@ a {
   height: 20px;
   line-height: 40%;
 }
+
+.reply-box {
+  margin-left: 80px;
+}
