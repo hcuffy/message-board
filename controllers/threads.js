@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10
 
 exports.addNewThread = (req, res, next) => {
-
 	if (Object.keys(req.body).length === 0 && req.body.constructor === Object){
 		res.end('Request was empty.')
 		return
@@ -31,20 +30,16 @@ exports.addNewThread = (req, res, next) => {
 }
 
 exports.getThreads = (req, res, next) => {
-
 	Thread.find({},null,{ sort: { createdAt: -1 } }, (err , threads) => {
 		if (err){
 	  return next(err)
 		}
 		res.render('thread', { title: 'Thread List' , threads })
-
 	})
 
 }
 
 exports.reportThread = (req, res, next) => {
-	console.log('I got here')
-
 	Thread.findByIdAndUpdate(req.params.id,{ $set :{ report : true } }, (err, thread) => {
 		if (err) {
 			return next(err)
@@ -53,4 +48,24 @@ exports.reportThread = (req, res, next) => {
 
 	})
 
+}
+
+exports.deleteThread = (req, res, next) => {
+	console.log(req.params.id)
+	Thread.findByIdAnd(req.params.id, (err, thread) => {
+		if (err) {
+			return next(err)
+		}
+
+		res.send(thread)
+
+	})
+
+	// Thread.findByIdAndRemove(req.params.id, (err, thread) => {
+	// 	if (err) {
+	// 		return next(err)
+	// 	}
+	// 	res.end('success')
+	//
+	// })
 }
