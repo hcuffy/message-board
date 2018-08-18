@@ -13,8 +13,13 @@
   </head>
   <body>
     <div class="container">
-      <h3 class="title">Message Board</h3>
+      <div>
+        <h3 class="title">Message Board</h3>
+        <a href="/"><button class="btn btn-secondary back-btn ">&larr; To Main Screen</button></a>
+      </div>
+
       <div class="all-threads">
+
         <h5>Threads</h3>
 
        <% for(var i = 0; i < threads.length; i++){ %>
@@ -24,19 +29,49 @@
             <span><%=threads[i].thread %></span><br>
 
             <% if(threads[i].report){ %>
-            <button id="<%=threads[i].id%>" class="btn btn-warning report" disabled>Already Reported</button>
+              <button id="<%=threads[i].id%>" class="btn btn-warning report" disabled>Already Reported</button>
             <%}else{%>
-             <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
-              <%}%>
-          </p>
+              <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
+            </p>
+            <%}%>
           <form  id="<%=threads[i].id%>" >
-            <label for="password-form">Deletion Thread:</label>
+            <label for="password-form">Delete Thread:</label>
             <input  type="password" name="password" placeholder="Password*" required>
             <button type="sumbit" class="btn btn-danger delete-thread">Delete Thread</button>
           </form>
 
           <div class="reply-box">
-              <form class="reply-form" action="/replies/add-reply/<%=threads[i].id%>" method="post">
+            <% var k = 0  %>
+             <% for(var j = 0; j < replies.length; j++){ %>
+              <% if (replies[j].threadId == threads[i].id) { %>
+                <% k++ %>
+                <% if (k == 4) { %>
+                       <% break %>
+                 <%}%>
+
+                  <p class="reply-paragraph">
+                  <span><b>Replied on:</b> <%=replies[j].createdAt.getFullYear() +"-"+ replies[j].createdAt.getMonth() +"-"+ replies[j].createdAt.getDate() %></span><br>
+
+                    <span><%=replies[i].reply %></span><br>
+
+                    <% if(replies[i].report){ %>
+                      <button id="<%=replies[j].id%>" class="btn btn-warning report" disabled>Already Reported</button>
+                    <%}else{%>
+                      <button id="<%=replies[j].id%>" class="btn btn-warning report">Report</button>
+
+                    <%}%>
+                  <form  id="<%=replies[j].id%>" >
+                    <label for="passworf">Delete Reply:</label>
+                    <input  type="password" name="password" placeholder="Password*" required>
+                    <button type="sumbit" class="btn btn-danger delete-reply">Delete</button>
+                  </form>
+                 </p>
+               <%}%>
+
+            <%}%>
+            <span>Displaying <%=k%>  replies.</span><br>
+            <span>To see the full list </span><a href="replies/all-replies/<%=threads[i].id%>"><button class="btn btn-secondary all-replies-btn">click here</button></a>
+            <form class="reply-form" action="/replies/add-reply/<%=threads[i].id%>" method="post">
                 <div class="form-group">
                   <textarea class="form-control" rows="3" name="reply" placeholder="New Reply" required></textarea>
                 </div>

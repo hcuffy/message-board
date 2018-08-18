@@ -1,4 +1,5 @@
 const Thread = require('../models/thread')
+const Reply = require('../models/reply')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
@@ -34,7 +35,12 @@ exports.getThreads = (req, res, next) => {
 		if (err){
 	  return next(err)
 		}
-		res.render('thread', { title: 'Thread List' , threads })
+		Reply.find({},null,{ sort: { createdAt: -1 } }, (err , replies) => {
+			if (err){
+				return next(err)
+			}
+			res.render('thread', { title: 'Thread List' , threads, replies })
+		})
 	})
 
 }

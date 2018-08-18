@@ -24,17 +24,39 @@ a {
   padding-top: 60px;
 }
 
+.all-threads {
+  margin-top: 20px;
+}
+
 .individual-thread {
   border: solid;
   border-width: 2px;
   padding: 10px 10px 10px 10px
 }
 
-.report, .delete-thread {
+.report, .delete-thread, .delete-reply, .reply-btn {
+  height: 20px;
+  line-height: 40%;
+}
+
+.all-replies-btn {
   height: 20px;
   line-height: 40%;
 }
 
 .reply-box {
   margin-left: 80px;
+}
+
+.back-btn {
+  float: right;
+}
+
+.reply-paragraph {
+  border-width: 2px;
+  border-top-style: dotted;
+  border-right-style: solid;
+  border-bottom-style: dotted;
+  border-left-style: solid;
+  padding: 5px 5px 5px 5px;
 }

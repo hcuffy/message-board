@@ -1,4 +1,5 @@
 const Reply = require('../models/reply')
+const Thread = require('../models/thread')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
@@ -29,4 +30,24 @@ exports.addReply = (req, res, next) => {
 		 }
 	})
 	res.redirect('/threads')
+}
+
+exports.displayAllReplies = (req, res, next) => {
+	let repliesArray = []
+	Thread.findById(req.params.id,null,{ sort: { createdAt: -1 } }, (err , thread) => {
+		if (err){
+	  return next(err)
+		}
+		Reply.find({},null,{ sort: { createdAt: -1 } }, (err , replies) => {
+			if (err){
+				return next(err)
+			}
+			//console.log(replies)
+			console.log(thread)
+			repliesArray = replies.filter(replies => replies.threadId == req.params.id)
+
+			res.render('single-thread', { title: 'Single Thread' , threads, repliesArray })
+		})
+	})
+
 }
