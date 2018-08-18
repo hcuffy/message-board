@@ -15,63 +15,52 @@
     <div class="container">
       <div>
         <h3 class="title">Message Board</h3>
-        <a href="/"><button class="btn btn-secondary back-btn ">&larr; To Main Screen</button></a>
+        <a href="/threads"><button class="btn btn-secondary back-btn ">&larr; Return To Thread List</button></a>
       </div>
 
       <div class="all-threads">
 
-        <h5>Threads</h3>
+        <h5>Single Thread</h3>
 
-       <% for(var i = 0; i < threads.length; i++){ %>
         <div class="individual-thread">
-          <span><b>Created on:</b> <%=threads[i].createdAt.getFullYear() +"-"+ threads[i].createdAt.getMonth() +"-"+ threads[i].createdAt.getDate() %></span><br>
+          <span><b>Created on:</b> <%=thread.createdAt.getFullYear() +"-"+ thread.createdAt.getMonth() +"-"+ thread.createdAt.getDate() %></span><br>
           <p>
-            <span><%=threads[i].thread %></span><br>
+            <span><%=thread.thread %></span><br>
 
-            <% if(threads[i].report){ %>
-              <button id="<%=threads[i].id%>" class="btn btn-warning report" disabled>Already Reported</button>
+            <% if(thread.report){ %>
+              <button id="<%=thread.id%>" class="btn btn-warning report" disabled>Already Reported</button>
             <%}else{%>
-              <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
+              <button id="<%=thread.id%>" class="btn btn-warning report">Report Thread</button>
             </p>
             <%}%>
-          <form  id="<%=threads[i].id%>" >
+          <form  id="<%=thread.id%>" >
             <label for="password-form">Delete Thread:</label>
             <input  type="password" name="password" placeholder="Password*" required>
             <button type="sumbit" class="btn btn-danger delete-thread">Delete Thread</button>
           </form>
 
           <div class="reply-box">
-            <% var k = 0  %>
-             <% for(var j = 0; j < replies.length; j++){ %>
-              <% if (replies[j].threadId == threads[i].id) { %>
-                <% k++ %>
-                <% if (k == 4) { %>
-                       <% break %>
-                 <%}%>
-
+             <% for(var j = 0; j < repliesArray.length; j++){ %>
                   <p class="reply-paragraph">
-                  <span><b>Replied on:</b> <%=replies[j].createdAt.getFullYear() +"-"+ replies[j].createdAt.getMonth() +"-"+ replies[j].createdAt.getDate() %></span><br>
+                  <span><b>Replied on:</b> <%=repliesArray[j].createdAt.getFullYear() +"-"+ repliesArray[j].createdAt.getMonth() +"-"+ repliesArray[j].createdAt.getDate() %></span><br>
 
-                    <span><%=replies[j].reply %></span><br>
+                    <span><%=repliesArray[j].reply %></span><br>
 
-                    <% if(replies[j].report){ %>
-                      <button id="<%=replies[j].id%>" class="btn btn-warning report" disabled>Already Reported</button>
+                    <% if(repliesArray[j].report){ %>
+                      <button id="<%=repliesArray[j].id%>" class="btn btn-warning report" disabled>Already Reported</button>
                     <%}else{%>
-                      <button id="<%=replies[j].id%>" class="btn btn-warning report">Report</button>
-
+                      <button id="<%=repliesArray[j].id%>" class="btn btn-warning report">Report</button>
                     <%}%>
-                  <form  id="<%=replies[j].id%>" >
+
+                  <form  id="<%=repliesArray[j].id%>" >
                     <label for="passworf">Delete Reply:</label>
                     <input  type="password" name="password" placeholder="Password*" required>
                     <button type="sumbit" class="btn btn-danger delete-reply">Delete</button>
                   </form>
                  </p>
-               <%}%>
 
             <%}%>
-            <span>Displaying <%=k%>  replies.</span><br>
-            <span>To see the full list </span><a href="replies/all-replies/<%=threads[i].id%>"><button class="btn btn-secondary all-replies-btn">click here</button></a>
-            <form class="reply-form" action="/replies/add-reply/<%=threads[i].id%>" method="post">
+            <form class="reply-form" action="/repliesArray/add-reply/<%=thread.id%>" method="post">
                 <div class="form-group">
                   <textarea class="form-control" rows="3" name="reply" placeholder="New Reply" required></textarea>
                 </div>
@@ -81,7 +70,6 @@
           </div>
 
         </div>
-     <%  } %>
       </div>
     </div>
 

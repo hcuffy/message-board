@@ -34,7 +34,7 @@ exports.addReply = (req, res, next) => {
 
 exports.displayAllReplies = (req, res, next) => {
 	let repliesArray = []
-	Thread.findById(req.params.id,null,{ sort: { createdAt: -1 } }, (err , thread) => {
+	Thread.findById(req.params.id, (err , thread) => {
 		if (err){
 	  return next(err)
 		}
@@ -46,7 +46,7 @@ exports.displayAllReplies = (req, res, next) => {
 			console.log(thread)
 			repliesArray = replies.filter(replies => replies.threadId == req.params.id)
 
-			res.render('single-thread', { title: 'Single Thread' , threads, repliesArray })
+			res.render('single-thread', { title: 'Single Thread' , thread, repliesArray })
 		})
 	})
 
