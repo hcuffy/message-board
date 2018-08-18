@@ -42,33 +42,31 @@ $(document).ready(function() {
   		type: 'DELETE',
   		data: $(this.form).serialize(),
   		success: function(result) {
-  		// $.confirm({
-  			// 	title: 'The thread was reported!!',
-  			// 	content: result,
-  			// 	type: 'green',
-  			// 	typeAnimated: true,
-  			// 	buttons: {
-  			// 		ok: {
-  			// 			text: 'OK',
-  			// 			btnClass: 'btn-green',
-  			// 			action: function() {
-  			// 				document.location.href = '/threads'
-  			// 			}
-  			// 		}
-  			// 	}
-  			// })
+  		$.confirm({
+  				title: 'The thread was deleted!',
+  				content: result,
+  				type: 'green',
+  				typeAnimated: true,
+  				buttons: {
+  					ok: {
+  						text: 'OK',
+  						btnClass: 'btn-green',
+  						action: function() {
+  							document.location.href = '/threads'
+  						}
+  					}
+  				}
+  			})
   		},
   		error: function() {
-  		// $.alert({
-  		// 		title: 'Somthing went wrong!',
-  		// 		content: 'The thread was not reported.',
-  		// 		type: 'red'
-  		// 	})
+  		$.alert({
+  				title: 'Wrong password!',
+  				content: 'Try again please.',
+  				type: 'red'
+  			})
   		}
   	})
 	})
-
-
 
 
 })

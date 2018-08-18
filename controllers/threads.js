@@ -51,21 +51,25 @@ exports.reportThread = (req, res, next) => {
 }
 
 exports.deleteThread = (req, res, next) => {
-	console.log(req.params.id)
-	Thread.findByIdAnd(req.params.id, (err, thread) => {
+	const { password } = req.body
+	Thread.findById(req.params.id, (err, thread) => {
 		if (err) {
 			return next(err)
 		}
+		bcrypt.compare(password, thread.password, (err, answer) => {
+			if (answer){
+				Thread.findByIdAndRemove(req.params.id, (err, thread) => {
+					if (err) {
+						return next(err)
+					}
+					res.end('success')
 
-		res.send(thread)
+				})
+			} else {
+				res.end('error')
+			}
+		})
 
 	})
 
-	// Thread.findByIdAndRemove(req.params.id, (err, thread) => {
-	// 	if (err) {
-	// 		return next(err)
-	// 	}
-	// 	res.end('success')
-	//
-	// })
 }
