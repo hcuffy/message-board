@@ -4,7 +4,7 @@ This application will allow users to read and post on a message board.
 
 Follow this README in order to properly run this application.
 
-Live App: Coming soon
+Live App: <https://splendid-macaw.glitch.me/>
 
 ## Prerequisites for Local Installation.
 
