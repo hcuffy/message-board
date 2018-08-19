@@ -146,8 +146,9 @@ describe('functional tests', () =>  {
 				.delete('/replies/remove/' + id)
 				.send({ password : 'qwe123' })
 				.end((err, res) => {
+
 					assert.equal(res.status, 400)
-					assert.equal(res.text, '{"error":"Could not delete the thread."}')
+					assert.equal(res.text, '{"error":"Could not delete the reply."}')
 					done()
 				})
 		})
