@@ -68,6 +68,12 @@ exports.deleteReply = (req, res, next) => {
 		if (err) {
 			return next(err)
 		}
+		if (thread == null){
+			res.status(400).send({
+				error: 'Could not find thread.'
+			})
+			return
+		}
 		bcrypt.compare(password, reply.password, (err, answer) => {
 			if (answer){
 				Reply.findByIdAndUpdate(req.params.id,{ $set :{ deleted : true } }, (err, reply) => {

@@ -97,25 +97,48 @@ describe('functional tests', () =>  {
 		// 		})
 		// })
 
-		it('should add new reply', (done) =>  {
-			let threadId = '5b79aa14db062e505b92b45d'
-			let replyText = 'Should add a reply!'
-			chai.request(server)
-				.post('/replies/add-reply/' + threadId)
-				.set('content-type', 'application/x-www-form-urlencoded')
-				.send({ reply : replyText , password : '123qwe' })
-				.end((err, res) => {
+		// it('should add new reply', (done) =>  {
+		// 	let threadId = '5b79aa14db062e505b92b45d'
+		// 	let replyText = 'Should add a reply!'
+		// 	chai.request(server)
+		// 		.post('/replies/add-reply/' + threadId)
+		// 		.set('content-type', 'application/x-www-form-urlencoded')
+		// 		.send({ reply : replyText , password : '123qwe' })
+		// 		.end((err, res) => {
+		// 			const dom = new JSDOM(res.text)
+		// 			let output = dom.window.document.body.querySelector('.reply-box').textContent
+		// 			assert.equal(res.status, 200)
+		// 		  assert.include(output, replyText , 'Output contains reply text.')
+		// 			done()
+		// 		})
+		// })
 
-					const dom = new JSDOM(res.text)
-					let output = dom.window.document.body.querySelector('.reply-box').textContent
-					console.log(output)
+		// it('should add new reply for singles route', (done) =>  {
+		// 	let threadId = '5b79aa14db062e505b92b45d'
+		// 	let replyText = 'Should add a reply!'
+		// 	chai.request(server)
+		// 		.post('/replies/single-reply/' + threadId)
+		// 		.set('content-type', 'application/x-www-form-urlencoded')
+		// 		.send({ reply : replyText , password : '123qwe' })
+		// 		.end((err, res) => {
+		// 			const dom = new JSDOM(res.text)
+		// 			let output = dom.window.document.body.querySelector('.reply-box').textContent
+		// 			assert.equal(res.status, 200)
+		// 			assert.include(output, replyText , 'Output contains reply text.')
+		// 			done()
+		// 		})
+		// })
+
+		it('should report reply', (done) =>  {
+			let id = '5b79aa1edb062e505b92b45e'
+			chai.request(server)
+				.put('/replies/report/' + id)
+				.end((err, res) => {
 					assert.equal(res.status, 200)
-				  assert.include(output, replyText , 'Output contains thread text.')
+					assert.equal(res.text, 'success')
 					done()
 				})
 		})
-
-
 
 	})
 })
