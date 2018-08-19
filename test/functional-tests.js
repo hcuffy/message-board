@@ -13,7 +13,6 @@ describe('functional tests', () =>  {
 			chai.request(server)
 				.get('/threads/')
 				.end((err, res) => {
-					console.log(res.text)
 					assert.equal(res.status, 200)
 					done()
 				})
@@ -26,7 +25,6 @@ describe('functional tests', () =>  {
 				.set('content-type', 'application/x-www-form-urlencoded')
 				.send({ thread_text : threadText , password : '123qwe' })
 				.end((err, res) => {
-
 					const dom = new JSDOM(res.text)
 					let output = dom.window.document.body.querySelector('.all-threads').textContent
 					assert.equal(res.status, 200)
@@ -178,5 +176,5 @@ describe('functional tests', () =>  {
 				})
 		})
 	})
-  
+
 })
