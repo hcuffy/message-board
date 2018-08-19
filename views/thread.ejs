@@ -49,9 +49,9 @@
                         <span><%= replies[j].reply %></span><br>
 
                         <% if(replies[j].report){ %>
-                          <button id="<%=replies[j].id%>" class="btn btn-warning report" disabled>Already Reported</button>
+                          <button id="<%=replies[j].id%>" class="btn btn-warning report-reply" disabled>Already Reported</button>
                         <% }else{ %>
-                          <button id="<%=replies[j].id%>" class="btn btn-warning report">Report</button>
+                          <button id="<%=replies[j].id%>" class="btn btn-warning report-reply">Report</button>
 
                         <% } %>
                       <form  id="<%=replies[j].id%>" >
