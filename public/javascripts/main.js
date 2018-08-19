@@ -103,6 +103,37 @@ $(document).ready(function() {
   	})
 	})
 
-
+	$('.delete-reply').click(function(e) {
+		e.preventDefault()
+		$.ajax({
+			url: '/replies/remove/' + this.form.id,
+			type: 'DELETE',
+			data: $(this.form).serialize(),
+			success: function(result) {
+				$.confirm({
+					title: 'The reply was deleted!',
+					content: result,
+					type: 'green',
+					typeAnimated: true,
+					buttons: {
+						ok: {
+							text: 'OK',
+							btnClass: 'btn-green',
+							action: function() {
+								document.location.href = document.location.pathname
+							}
+						}
+					}
+				})
+			},
+			error: function() {
+				$.alert({
+					title: 'Wrong password!',
+					content: 'Try again please.',
+					type: 'red'
+				})
+			}
+		})
+	})
 
 })

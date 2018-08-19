@@ -20,7 +20,7 @@ exports.addReply = (req, res, next) => {
 	const newReply = new Reply({
 		threadId: req.params.id,
 		reply: reply,
-		password: password,
+		password: hashedPassword,
 		report: false,
 		deleted: false
 	})
@@ -52,12 +52,36 @@ exports.displayAllReplies = (req, res, next) => {
 
 exports.reportReply = (req, res, next) => {
 
-	console.log('im here')
 	Reply.findByIdAndUpdate(req.params.id,{ $set :{ report : true } }, (err, reply) => {
 		if (err) {
 			return next(err)
 		}
 	   res.end('success')
+
+	})
+
+}
+
+
+exports.deleteReply = (req, res, next) => {
+	const { password } = req.body
+	Reply.findById(req.params.id, (err, reply) => {
+		if (err) {
+			return next(err)
+		}
+		bcrypt.compare(password, reply.password, (err, answer) => {
+			if (answer){
+				Reply.findByIdAndUpdate(req.params.id,{ $set :{ deleted : true } }, (err, reply) => {
+					if (err) {
+						return next(err)
+					}
+					res.end('success')
+
+				})
+			} else {
+				res.end('error')
+			}
+		})
 
 	})
 
