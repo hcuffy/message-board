@@ -140,15 +140,41 @@ describe('functional tests', () =>  {
 		// 		})
 		// })
 
-		it('should not delete reply with wrong password', (done)  =>  {
-			let id = '5b79aeca3736145125e86f04' //should be updated before testing
+		// it('should not delete reply with wrong password', (done)  =>  {
+		// 	let id = '5b79aeca3736145125e86f04' //should be updated before testing
+		// 	chai.request(server)
+		// 		.delete('/replies/remove/' + id)
+		// 		.send({ password : 'qwe123' })
+		// 		.end((err, res) => {
+		//
+		// 			assert.equal(res.status, 400)
+		// 			assert.equal(res.text, '{"error":"Could not delete the reply."}')
+		// 			done()
+		// 		})
+		// })
+
+		// it('should not delete reply with wrong id', (done)  =>  {
+		// 	let id = 'f479aeca3736145125e86123'
+		// 	chai.request(server)
+		// 		.delete('/replies/remove/' + id)
+		// 		.send({ password : '123qwe' })
+		// 		.end((err, res) => {
+		//
+		// 			assert.equal(res.status, 400)
+		// 			assert.equal(res.text, '{"error":"Could not find reply."}')
+		// 			done()
+		// 		})
+		// })
+
+
+		it('should  delete reply', (done)  =>  {
+			let id = '5b79aa1edb062e505b92b45e' //should be updated before testing
 			chai.request(server)
 				.delete('/replies/remove/' + id)
-				.send({ password : 'qwe123' })
+				.send({ password : '123qwe' })
 				.end((err, res) => {
-
-					assert.equal(res.status, 400)
-					assert.equal(res.text, '{"error":"Could not delete the reply."}')
+					assert.equal(res.status, 200)
+					assert.equal(res.text, 'success')
 					done()
 				})
 		})
