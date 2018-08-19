@@ -22,15 +22,15 @@
         <h5>Threads</h3>
        <% for(var i = 0; i < threads.length; i++){ %>
         <div class="individual-thread">
-          <span><b>Created on:</b> <%=threads[i].createdAt.getFullYear() +"-"+ threads[i].createdAt.getMonth() +"-"+ threads[i].createdAt.getDate() %></span><br>
+          <span><b>Created on:</b> <%= threads[i].createdAt.getFullYear() +"-"+ threads[i].createdAt.getMonth() +"-"+ threads[i].createdAt.getDate() %></span><br>
           <p>
-            <span><%=threads[i].thread %></span><br>
+            <span><%= threads[i].thread %></span><br>
             <% if(threads[i].report){ %>
               <button id="<%=threads[i].id%>" class="btn btn-warning report" disabled>Already Reported</button>
-            <%}else{%>
+            <% }else{ %>
               <button id="<%=threads[i].id%>" class="btn btn-warning report">Report Thread</button>
           </p>
-            <%}%>
+            <% } %>
 
           <form  id="<%=threads[i].id%>" >
             <label for="password-form">Delete Thread:</label>
@@ -45,12 +45,15 @@
                   <% numberOfReplies++ %>
 
                     <p class="reply-paragraph">
-                      <span><b>Replied on:</b> <%=replies[j].createdAt.getFullYear() +"-"+ replies[j].createdAt.getMonth() +"-"+ replies[j].createdAt.getDate() %></span><br>
+                      <span><b>Replied on:</b> <%= replies[j].createdAt.getFullYear() +"-"+ replies[j].createdAt.getMonth() +"-"+ replies[j].createdAt.getDate() %></span><br>
+                       <% if(replies[j].deleted){ %>
+                         <span>[REPLY DELETED]</span><br>
+                         <% }else{ %>
                         <span><%= replies[j].reply %></span><br>
-
-                        <% if(replies[j].report){ %>
+                          <% } %>
+                        <% if(replies[j].report && !replies[j].deleted){ %>
                           <button id="<%=replies[j].id%>" class="btn btn-warning report-reply" disabled>Already Reported</button>
-                        <% }else{ %>
+                        <% }else if(!replies[j].deleted){ %>
                           <button id="<%=replies[j].id%>" class="btn btn-warning report-reply">Report</button>
 
                         <% } %>
@@ -63,9 +66,9 @@
                 <% } %>
                 <% if (numberOfReplies == 4) { %>
                     <% break %>
-                 <%}%>
+                 <% } %>
               <% } %>
-            <span>Displaying <%=numberOfReplies%>  replies.</span><br>
+            <span>Displaying <%= numberOfReplies%>  replies.</span><br>
             <span>To see the full list </span><a href="replies/all-replies/<%=threads[i].id%>"><button class="btn btn-secondary all-replies-btn">click here</button></a>
             <form class="reply-form" action="/replies/add-reply/<%=threads[i].id%>" method="post">
               <div class="form-group">
