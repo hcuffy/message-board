@@ -9,14 +9,15 @@ chai.use(chaiHttp)
 
 describe('functional tests', () =>  {
 	describe('Thread test suite', () =>  {
-  	// it('should get all threads', (done) =>  {
+		// it('should get all threads', (done) =>  {
 		// 	chai.request(server)
 		// 		.get('/threads/')
 		// 		.end((err, res) => {
+		// 			console.log(res.text)
 		// 			assert.equal(res.status, 200)
 		// 			done()
-		// 	})
-	  // })
+		// 		})
+		// })
 
 		// it('should add new thread', (done) =>  {
 		// 	let threadText = 'Should add thread!'
@@ -25,24 +26,25 @@ describe('functional tests', () =>  {
 		// 		.set('content-type', 'application/x-www-form-urlencoded')
 		// 		.send({ thread_text : threadText , password : '123qwe' })
 		// 		.end((err, res) => {
+		//
 		// 			const dom = new JSDOM(res.text)
 		// 			let output = dom.window.document.body.querySelector('.all-threads').textContent
 		// 			assert.equal(res.status, 200)
-		// 			assert.include(output, threadText , 'Out contains thread text.')
+		// 			assert.include(output, threadText , 'Output contains thread text.')
 		// 			done()
 		// 		})
 		// })
 
 		// it('should report thread', (done) =>  {
-		// 	let id = '5b74044cb042a91c7cd1a447'
-		// 	chai.request(server)
-		// 		.put('/thread/' + id)
-		// 		.end((err, res) => {
-		// 			assert.equal(res.status, 200)
-		// 			assert.equal(res.text, 'success')
-		// 			done()
-		// 		})
-		// })
+// 	let id = '5b74044cb042a91c7cd1a447'
+// 	chai.request(server)
+// 		.put('/thread/' + id)
+// 		.end((err, res) => {
+// 			assert.equal(res.status, 200)
+// 			assert.equal(res.text, 'success')
+// 			done()
+// 		})
+// })
 
 		// it('should not delete thread with wrong password', (done)  =>  {
 		// 	let id = '5b798e78f7760d4d1b767eb3' //should be updated before testing
@@ -55,7 +57,7 @@ describe('functional tests', () =>  {
 		// 			done()
 		// 		})
 		// })
-
+		//
 		// it('should not find thread with wrong id', (done)  =>  {
 		// 	let id = '5b798e78f7755d4d1b767eb4'
 		// 	chai.request(server)
@@ -67,7 +69,7 @@ describe('functional tests', () =>  {
 		// 			done()
 		// 		})
 		// })
-
+		//
 		// it('should delete thread', (done)  =>  {
 		// 	let id = '5b798e78f7760d4d1b767eb3'
 		// 	chai.request(server)
@@ -85,4 +87,6 @@ describe('functional tests', () =>  {
 
 
 	})
+
+
 })
