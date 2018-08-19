@@ -45,10 +45,10 @@ describe('functional tests', () =>  {
 		// })
 
 		it('should delete thread', (done)  =>  {
-			let id = '5b711b695cd3880b22ad57dc' //should be changed before testing
+			let id = '5b79862ff7a43e4bed77b48d' //should be changed before testing
 			chai.request(server)
 				.delete('/thread/' + id)
-    		.send({ password : '123qwe' })
+    		.send({ password : 'qwe123' })
 				.end((err, res) => {
 					// const dom = new JSDOM(res.text)
 					// let output = dom.window.document.body.querySelector('pre').textContent
