@@ -25,7 +25,7 @@ $(document).ready(function() {
   				}
   			})
   		},
-  		error: function() {
+  		error: function(result) {
   		$.alert({
   				title: 'Somthing went wrong!',
   				content: 'The thread was not reported.',
@@ -58,7 +58,7 @@ $(document).ready(function() {
   				}
   			})
   		},
-  		error: function() {
+  		error: function(result) {
   		$.alert({
   				title: 'Wrong password!',
   				content: 'Try again please.',

@@ -78,7 +78,9 @@ exports.deleteReply = (req, res, next) => {
 
 				})
 			} else {
-				res.end('error')
+				res.status(400).send({
+	       error: 'Could not delete the Reply.'
+				})
 			}
 		})
 
