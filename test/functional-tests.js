@@ -36,15 +36,15 @@ describe('functional tests', () =>  {
 		// })
 
 		// it('should report thread', (done) =>  {
-// 	let id = '5b74044cb042a91c7cd1a447'
-// 	chai.request(server)
-// 		.put('/thread/' + id)
-// 		.end((err, res) => {
-// 			assert.equal(res.status, 200)
-// 			assert.equal(res.text, 'success')
-// 			done()
-// 		})
-// })
+		// 	let id = '5b74044cb042a91c7cd1a447'
+		// 	chai.request(server)
+		// 		.put('/thread/' + id)
+		// 		.end((err, res) => {
+		// 			assert.equal(res.status, 200)
+		// 			assert.equal(res.text, 'success')
+		// 			done()
+		// 		})
+		// })
 
 		// it('should not delete thread with wrong password', (done)  =>  {
 		// 	let id = '5b798e78f7760d4d1b767eb3' //should be updated before testing
@@ -84,9 +84,38 @@ describe('functional tests', () =>  {
 	})
 
 	describe('Reply test suite', () =>  {
+		// it('should get all replies for a thread', (done) =>  {
+		// 	let id = '5b79aa14db062e505b92b45d'
+		// 	chai.request(server)
+		// 		.get('/replies/all-replies/' + id)
+		// 		.end((err, res) => {
+		// 			const dom = new JSDOM(res.text)
+		//   		let output = dom.window.document.body.querySelector('.reply-paragraph').textContent
+		// 			assert.equal(res.status, 200)
+		// 		  assert.isAbove(output.length, 16 , 'Output contains at least one reply.')
+		// 			done()
+		// 		})
+		// })
+
+		it('should add new reply', (done) =>  {
+			let threadId = '5b79aa14db062e505b92b45d'
+			let replyText = 'Should add a reply!'
+			chai.request(server)
+				.post('/replies/add-reply/' + threadId)
+				.set('content-type', 'application/x-www-form-urlencoded')
+				.send({ reply : replyText , password : '123qwe' })
+				.end((err, res) => {
+
+					const dom = new JSDOM(res.text)
+					let output = dom.window.document.body.querySelector('.reply-box').textContent
+					console.log(output)
+					assert.equal(res.status, 200)
+				  assert.include(output, replyText , 'Output contains thread text.')
+					done()
+				})
+		})
+
 
 
 	})
-
-
 })
