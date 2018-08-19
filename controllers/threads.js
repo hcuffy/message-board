@@ -58,8 +58,9 @@ exports.reportThread = (req, res, next) => {
 
 exports.deleteThread = (req, res, next) => {
 	const { password } = req.body
-
-	Thread.findById(req.params.id, (err, thread) => {
+	console.log(password)
+	console.log(req.params.id)
+	Thread.findById({ _id : req.params.id }, (err, thread) => {
 		if (err) {
 			return next(err)
 		}
