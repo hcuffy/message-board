@@ -129,13 +129,25 @@ describe('functional tests', () =>  {
 		// 		})
 		// })
 
-		it('should report reply', (done) =>  {
-			let id = '5b79aa1edb062e505b92b45e'
+		// it('should report reply', (done) =>  {
+		// 	let id = '5b79aa1edb062e505b92b45e'
+		// 	chai.request(server)
+		// 		.put('/replies/report/' + id)
+		// 		.end((err, res) => {
+		// 			assert.equal(res.status, 200)
+		// 			assert.equal(res.text, 'success')
+		// 			done()
+		// 		})
+		// })
+
+		it('should not delete reply with wrong password', (done)  =>  {
+			let id = '5b79aeca3736145125e86f04' //should be updated before testing
 			chai.request(server)
-				.put('/replies/report/' + id)
+				.delete('/replies/remove/' + id)
+				.send({ password : 'qwe123' })
 				.end((err, res) => {
-					assert.equal(res.status, 200)
-					assert.equal(res.text, 'success')
+					assert.equal(res.status, 400)
+					assert.equal(res.text, '{"error":"Could not delete the thread."}')
 					done()
 				})
 		})

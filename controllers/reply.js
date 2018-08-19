@@ -70,7 +70,7 @@ exports.deleteReply = (req, res, next) => {
 		}
 		if (thread == null){
 			res.status(400).send({
-				error: 'Could not find thread.'
+				error: 'Could not find reply.'
 			})
 			return
 		}
@@ -85,7 +85,7 @@ exports.deleteReply = (req, res, next) => {
 				})
 			} else {
 				res.status(400).send({
-	       error: 'Could not delete the Reply.'
+	       error: 'Could not delete the reply.'
 				})
 			}
 		})
