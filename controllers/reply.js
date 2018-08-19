@@ -42,12 +42,23 @@ exports.displayAllReplies = (req, res, next) => {
 			if (err){
 				return next(err)
 			}
-			//console.log(replies)
-			console.log(thread)
 			repliesArray = replies.filter(replies => replies.threadId == req.params.id)
 
 			res.render('single-thread', { title: 'Single Thread' , thread, repliesArray })
 		})
+	})
+
+}
+
+exports.reportReply = (req, res, next) => {
+
+	console.log('im here')
+	Reply.findByIdAndUpdate(req.params.id,{ $set :{ report : true } }, (err, reply) => {
+		if (err) {
+			return next(err)
+		}
+	   res.end('success')
+
 	})
 
 }

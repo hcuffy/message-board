@@ -43,9 +43,9 @@
               <span><b>Replied on:</b> <%=repliesArray[j].createdAt.getFullYear() +"-"+ repliesArray[j].createdAt.getMonth() +"-"+ repliesArray[j].createdAt.getDate() %></span><br>
               <span><%=repliesArray[j].reply %></span><br>
                 <% if(repliesArray[j].report){ %>
-                  <button id="<%=repliesArray[j].id%>" class="btn btn-warning report" disabled>Already Reported</button>
+                  <button id="<%=repliesArray[j].id%>" class="btn btn-warning report-reply" disabled>Already Reported</button>
                 <%}else{%>
-                  <button id="<%=repliesArray[j].id%>" class="btn btn-warning report">Report</button>
+                  <button id="<%=repliesArray[j].id%>" class="btn btn-warning report-reply">Report</button>
                 <%}%>
               <form  id="<%=repliesArray[j].id%>" >
                 <label for="passworf">Delete Reply:</label>

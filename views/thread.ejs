@@ -39,13 +39,11 @@
           </form>
 
           <div class="reply-box">
-            <% var k = 0  %>
+            <% let numberOfReplies = 0  %>
               <% for(var j = 0; j < replies.length; j++){ %>
                  <% if (replies[j].threadId == threads[i].id) { %>
-                  <% k++ %>
-                  <% if (k == 4) { %>
-                      <% break %>
-                   <%}%>
+                  <% numberOfReplies++ %>
+
                     <p class="reply-paragraph">
                       <span><b>Replied on:</b> <%=replies[j].createdAt.getFullYear() +"-"+ replies[j].createdAt.getMonth() +"-"+ replies[j].createdAt.getDate() %></span><br>
                         <span><%= replies[j].reply %></span><br>
@@ -63,8 +61,11 @@
                       </form>
                     </p>
                 <% } %>
+                <% if (numberOfReplies == 4) { %>
+                    <% break %>
+                 <%}%>
               <% } %>
-            <span>Displaying <%=k%>  replies.</span><br>
+            <span>Displaying <%=numberOfReplies%>  replies.</span><br>
             <span>To see the full list </span><a href="replies/all-replies/<%=threads[i].id%>"><button class="btn btn-secondary all-replies-btn">click here</button></a>
             <form class="reply-form" action="/replies/add-reply/<%=threads[i].id%>" method="post">
               <div class="form-group">

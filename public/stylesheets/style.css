@@ -39,7 +39,7 @@ a {
   line-height: 40%;
 }
 
-.all-replies-btn {
+.all-replies-btn, .report-reply {
   height: 20px;
   line-height: 40%;
 }
