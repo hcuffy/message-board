@@ -5,6 +5,7 @@ const replyController = require('../controllers/reply')
 router.delete('/remove/:id', replyController.deleteReply)
 router.put('/report/:id', replyController.reportReply)
 router.post('/add-reply/:id', replyController.addReply)
+router.post('/single-reply/:id', replyController.addReplySingle)
 router.get('/all-replies/:id', replyController.displayAllReplies)
 
 module.exports = router
