@@ -6,10 +6,7 @@ const helmet = require('helmet')
 const mongoose = require('mongoose')
 const app = express()
 
-mongoose.connect(
-	process.env.MONGODB_URI || 'mongodb://localhost:27017/personal-library',
-	{ useNewUrlParser: true }
-)
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/message-board',{ useNewUrlParser: true })
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))

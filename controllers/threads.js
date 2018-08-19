@@ -58,13 +58,16 @@ exports.reportThread = (req, res, next) => {
 
 exports.deleteThread = (req, res, next) => {
 	const { password } = req.body
-	console.log(password)
-	console.log(req.params.id)
-	Thread.findById({ _id : req.params.id }, (err, thread) => {
+	Thread.findById(req.params.id, (err, thread) => {
 		if (err) {
 			return next(err)
 		}
-		console.log(thread)
+		if (thread == null){
+			res.status(400).send({
+				error: 'Could not find thread.'
+			})
+			return
+		}
 		bcrypt.compare(password, thread.password, (err, answer) => {
 			if (answer){
 				Thread.findByIdAndRemove(req.params.id, (err, thread) => {
@@ -74,18 +77,11 @@ exports.deleteThread = (req, res, next) => {
 					res.end('success')
 				})
 			} else {
-				console.log('here1')
 				res.status(400).send({
 	      error: 'Could not delete the thread.'
 				})
 			}
 		})
-		if (thread == null){
-			res.status(400).send({
-				error: 'Could not find thread.'
-			})
-		}
-
 	})
 
 }

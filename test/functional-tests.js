@@ -44,17 +44,45 @@ describe('functional tests', () =>  {
 		// 		})
 		// })
 
-		it('should delete thread', (done)  =>  {
-			let id = '5b798e78f7760d4d1b767eb3' //should be updated before testing
-			chai.request(server)
-				.delete('/thread/' + id)
-    		.send({ password : '123qwe' })
-				.end((err, res) => {
-					console.log(res.text)
-					assert.equal(res.status, 200)
-					done()
-				})
-		})
+		// it('should not delete thread with wrong password', (done)  =>  {
+		// 	let id = '5b798e78f7760d4d1b767eb3' //should be updated before testing
+		// 	chai.request(server)
+		// 		.delete('/thread/' + id)
+		// 		.send({ password : 'qwe123' })
+		// 		.end((err, res) => {
+		// 			assert.equal(res.status, 400)
+		// 			assert.equal(res.text, '{"error":"Could not delete the thread."}')
+		// 			done()
+		// 		})
+		// })
+
+		// it('should not find thread with wrong id', (done)  =>  {
+		// 	let id = '5b798e78f7755d4d1b767eb4'
+		// 	chai.request(server)
+		// 		.delete('/thread/' + id)
+		// 		.send({ password : '123qwe' })
+		// 		.end((err, res) => {
+		// 			assert.equal(res.status, 400)
+		// 			assert.equal(res.text, '{"error":"Could not find thread."}')
+		// 			done()
+		// 		})
+		// })
+
+		// it('should delete thread', (done)  =>  {
+		// 	let id = '5b798e78f7760d4d1b767eb3'
+		// 	chai.request(server)
+		// 		.delete('/thread/' + id)
+		// 		.send({ password : '123qwe' })
+		// 		.end((err, res) => {
+		// 			assert.equal(res.status, 200)
+		// 			assert.equal(res.text, 'success')
+		// 			done()
+		// 		})
+		// })
+	})
+
+	describe('Reply test suite', () =>  {
+
 
 	})
 })
